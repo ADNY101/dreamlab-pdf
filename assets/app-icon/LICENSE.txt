@@ -1,0 +1,12 @@
+DreamLab PDF app icon (dreamlab-pdf.svg, dreamlab-pdf-small.svg and every file derived from them in this
+directory: dreamlab-pdf-1024.png, dreamlab-pdf.icns, dreamlab-pdf.ico, hicolor/).
+
+Original artwork made for this project by the project owner, drawn in ArtCraft and vectorised for
+DreamLab PDF (no third-party material). Licensed like the rest of DreamLab PDF, under either of
+
+  * Apache License, Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+  * MIT license (https://opensource.org/licenses/MIT)
+
+at your option.
+
+Regenerate the derived files with packaging/icons.sh.

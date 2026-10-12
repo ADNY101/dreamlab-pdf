@@ -1,0 +1,30 @@
+[package]
+name = "dreamlab-pdf-automation"
+description = "Agent control for DreamLab PDF: a headless tool set over the engine and an MCP server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+dreamlab-pdf-engine = { workspace = true }
+dreamlab-pdf-render = { workspace = true }
+dreamlab-pdf-organize = { workspace = true }
+dreamlab-pdf-platform = { workspace = true }
+serde_json = { workspace = true }
+png = "0.18"
+base64 = { version = "0.22", optional = true }
+
+
+[features]
+default = ["mcp"]
+# The MCP server module. Opt-in at run time either way; disable to leave it out of the build.
+mcp = ["dep:base64"]
+
+[dev-dependencies]
+dreamlab-pdf-cos = { workspace = true }
+dreamlab-pdf-model = { workspace = true }
+dreamlab-pdf-xfa = { workspace = true }
+image = { version = "0.25", default-features = false, features = ["jpeg"] }

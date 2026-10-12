@@ -1,0 +1,46 @@
+[package]
+name = "dreamlab-pdf-engine"
+description = "DreamLab PDF engine façade: session, documents, command/tool catalogue"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+dreamlab-pdf-measure = { workspace = true }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "tiff"] }
+dreamlab-pdf-render = { workspace = true }
+dreamlab-pdf-cos = { workspace = true }
+dreamlab-pdf-organize = { workspace = true }
+dreamlab-pdf-annot = { workspace = true }
+dreamlab-pdf-forms = { workspace = true }
+dreamlab-pdf-xfa = { workspace = true }
+dreamlab-pdf-edit = { workspace = true }
+dreamlab-pdf-redact = { workspace = true }
+dreamlab-pdf-print = { workspace = true }
+dreamlab-pdf-xfdf = { workspace = true }
+dreamlab-pdf-sign = { workspace = true }
+dreamlab-pdf-optimize = { workspace = true }
+dreamlab-pdf-a11y = { workspace = true }
+dreamlab-pdf-ocr = { workspace = true }
+dreamlab-pdf-js = { workspace = true }
+dreamlab-pdf-compare = { workspace = true }
+dreamlab-pdf-preflight = { workspace = true }
+dreamlab-pdf-export = { workspace = true }
+dreamlab-pdf-fonts = { workspace = true }
+dreamlab-pdf-create = { workspace = true }
+dreamlab-pdf-model = { workspace = true }
+dreamlab-pdf-geom = { workspace = true }
+thiserror = { workspace = true }
+png = "0.18"
+# Already in the graph (url and idna through webbrowser, icu_properties through boa): they show
+# the host of a document's link the way the browser reads it (links::display_host).
+url = "2.5"
+idna = "1.1"
+icu_properties = "2.3"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+# Already in the graph through lopdf; used only for the local UTC offset ("today").
+chrono = { version = "0.4", default-features = false, features = ["clock"] }

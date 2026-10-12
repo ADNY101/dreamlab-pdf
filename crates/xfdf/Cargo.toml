@@ -1,0 +1,17 @@
+[package]
+name = "dreamlab-pdf-xfdf"
+description = "Comment and form data exchange: XFDF (ISO 19444-1) and FDF import/export, form data as XML, CSV and tab-delimited text"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+dreamlab-pdf-cos = { workspace = true }
+dreamlab-pdf-annot = { workspace = true }
+dreamlab-pdf-forms = { workspace = true }
+dreamlab-pdf-model = { workspace = true }
+roxmltree = "0.20"
+thiserror = { workspace = true }

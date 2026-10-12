@@ -1,0 +1,11 @@
+[package]
+name = "dreamlab-pdf-geom"
+description = "Geometry primitives for DreamLab PDF (points, rects, page transforms)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]

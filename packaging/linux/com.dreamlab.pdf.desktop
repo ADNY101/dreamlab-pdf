@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=DreamLab PDF
+GenericName=PDF Editor
+Comment=Read, organize, combine, split and secure PDFs
+Exec=dreamlab-pdf %U
+TryExec=dreamlab-pdf
+Icon=com.dreamlab.pdf
+Terminal=false
+StartupNotify=true
+StartupWMClass=com.dreamlab.pdf
+Categories=Office;Viewer;
+Keywords=pdf;viewer;editor;annotate;sign;forms;merge;split;
+MimeType=application/pdf;
