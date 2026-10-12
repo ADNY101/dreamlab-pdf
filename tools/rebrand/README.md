@@ -26,12 +26,22 @@ The script fetches upstream, rebrands it onto `upstream-rebranded`, merges that 
 finishes with `rebrand.py --check`, which lists any upstream name that survived. New upstream code
 can mention the old name in a new way; add a rule to `rebrand.toml` and re-run.
 
+Some steps are automatic, set in `rebrand.toml`:
+
+- `[post]` runs on every rebranded snapshot: for example re-hashing `ATTRIBUTION.toml` or
+  regenerating a file that embeds the product name.
+- `[merge]` resolves conflicts in computed files by itself: `sha256` lines are recomputed and
+  generated files (such as `ATTRIBUTION.md`) are rebuilt. When only those conflict, the script
+  finishes the merge on its own.
+
 **When the merge stops on conflicts**, upstream changed lines we also changed. Typical spots:
 
 - `README.md`, `NOTICE`, `LICENSE-MIT`: keep ours, then copy in any upstream facts worth keeping.
 - The links module and title bar: keep our feedback links; take upstream's other changes.
 - Translation catalogs (`crates/ui-egui/src/i18n/*.tsv`): take upstream's new lines and keep ours
-  (the "Send feedback" / "Feedback" entries); never re-add Discord or ArtCraft entries.
+  (the "Send feedback" / "Feedback" entries); never re-add Discord or ArtCraft entries. When
+  upstream adds a **new language**, its catalog arrives with the old Discord/ArtCraft entries and
+  without ours: remove the former and translate ours (the `--check` step lists such files).
 - `.github/workflows/*`: we disabled the release workflows (moved to `.github/workflows-disabled/`);
   if upstream changed one, leave it disabled (`git rm` the re-added copy).
 
