@@ -26,8 +26,10 @@ def conflicted():
 
 
 def only_hashes_differ(ours, theirs):
-    a, b = ours.splitlines(), theirs.splitlines()
-    return len(a) == len(b) and all(x == y or (SHA.match(x) and SHA.match(y)) for x, y in zip(a, b))
+    """True when our side adds nothing but hash values: every other line of ours is in theirs.
+    (Upstream may add entries around it; our own real edits keep the conflict for a human.)"""
+    theirs_lines = set(theirs.splitlines())
+    return all(SHA.match(x) or x in theirs_lines for x in ours.splitlines())
 
 
 def main():

@@ -1091,6 +1091,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-print"
+version = "0.1.0"
+source = "git+https://github.com/storytold/craft-libs?rev=d991bf6792f8ade99c51358bf3c1d902c8cd96b5#d991bf6792f8ade99c51358bf3c1d902c8cd96b5"
+dependencies = [
+ "tempfile",
+]
+
+[[package]]
 name = "craft-ui"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=5c874d51eeb3de70e735c8ce87a59a7dedd47675#5c874d51eeb3de70e735c8ce87a59a7dedd47675"
@@ -1339,7 +1347,7 @@ checksum = "d8b14ccef22fc6f5a8f4d7d768562a182c04ce9a3b3157b91390b52ddfdf1a76"
 
 [[package]]
 name = "dreamlab-pdf"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-ui-egui",
  "eframe",
@@ -1353,13 +1361,14 @@ dependencies = [
  "ureq",
  "wayland-client",
  "wayland-protocols",
+ "windows",
  "winresource",
  "winsafe",
 ]
 
 [[package]]
 name = "dreamlab-pdf-a11y"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-content",
  "dreamlab-pdf-cos",
@@ -1370,7 +1379,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-annot"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-cos",
  "dreamlab-pdf-fonts",
@@ -1380,27 +1389,42 @@ dependencies = [
 ]
 
 [[package]]
+name = "dreamlab-pdf-audit"
+version = "0.7.1"
+dependencies = [
+ "dreamlab-pdf-content",
+ "dreamlab-pdf-cos",
+ "dreamlab-pdf-edit",
+ "dreamlab-pdf-model",
+ "thiserror 2.0.21",
+]
+
+[[package]]
 name = "dreamlab-pdf-automation"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "base64 0.22.1",
  "dreamlab-pdf-cos",
  "dreamlab-pdf-engine",
+ "dreamlab-pdf-fonts",
  "dreamlab-pdf-model",
  "dreamlab-pdf-organize",
  "dreamlab-pdf-platform",
  "dreamlab-pdf-render",
  "dreamlab-pdf-xfa",
+ "flate2",
  "image",
  "png 0.18.1",
  "serde_json",
+ "sha2",
 ]
 
 [[package]]
 name = "dreamlab-pdf-cli"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "base64 0.22.1",
+ "dreamlab-pdf-audit",
  "dreamlab-pdf-automation",
  "dreamlab-pdf-cos",
  "dreamlab-pdf-engine",
@@ -1412,18 +1436,18 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-compare"
-version = "0.6.0"
+version = "0.7.1"
 
 [[package]]
 name = "dreamlab-pdf-content"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-cos",
 ]
 
 [[package]]
 name = "dreamlab-pdf-cos"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-crypt",
  "dreamlab-pdf-filters",
@@ -1435,7 +1459,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-create"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-cos",
  "dreamlab-pdf-fonts",
@@ -1450,7 +1474,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-crypt"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "aes",
  "md-5",
@@ -1462,7 +1486,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-edit"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-annot",
  "dreamlab-pdf-content",
@@ -1470,17 +1494,19 @@ dependencies = [
  "dreamlab-pdf-fonts",
  "dreamlab-pdf-model",
  "hayro-syntax",
+ "kurbo 0.13.1",
  "thiserror 2.0.21",
  "unicode-bidi",
 ]
 
 [[package]]
 name = "dreamlab-pdf-engine"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "chrono",
  "dreamlab-pdf-a11y",
  "dreamlab-pdf-annot",
+ "dreamlab-pdf-audit",
  "dreamlab-pdf-compare",
  "dreamlab-pdf-cos",
  "dreamlab-pdf-create",
@@ -1512,14 +1538,14 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-export"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "flate2",
 ]
 
 [[package]]
 name = "dreamlab-pdf-filters"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "flate2",
  "proptest",
@@ -1529,16 +1555,17 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-fonts"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-cos",
  "harfrust",
  "skrifa 0.44.0",
+ "unicode-bidi",
 ]
 
 [[package]]
 name = "dreamlab-pdf-forms"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-content",
  "dreamlab-pdf-cos",
@@ -1550,18 +1577,18 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-geom"
-version = "0.6.0"
+version = "0.7.1"
 
 [[package]]
 name = "dreamlab-pdf-js"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "boa_engine",
 ]
 
 [[package]]
 name = "dreamlab-pdf-measure"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-annot",
  "dreamlab-pdf-content",
@@ -1573,14 +1600,14 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-model"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-cos",
 ]
 
 [[package]]
 name = "dreamlab-pdf-ocr"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-fonts",
  "ocrs",
@@ -1590,7 +1617,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-optimize"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-annot",
  "dreamlab-pdf-content",
@@ -1603,7 +1630,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-organize"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-content",
  "dreamlab-pdf-cos",
@@ -1613,14 +1640,16 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-platform"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
+ "async-channel",
+ "futures-lite",
  "zbus",
 ]
 
 [[package]]
 name = "dreamlab-pdf-preflight"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-cos",
  "dreamlab-pdf-model",
@@ -1628,8 +1657,9 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-print"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
+ "craft-print",
  "dreamlab-pdf-content",
  "dreamlab-pdf-cos",
  "dreamlab-pdf-model",
@@ -1638,7 +1668,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-redact"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-annot",
  "dreamlab-pdf-content",
@@ -1652,7 +1682,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-render"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "bytemuck",
  "dreamlab-pdf-cos",
@@ -1664,13 +1694,14 @@ dependencies = [
  "kurbo 0.13.1",
  "log",
  "lopdf",
+ "serde",
  "skrifa 0.44.0",
  "thiserror 2.0.21",
 ]
 
 [[package]]
 name = "dreamlab-pdf-sign"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "aes",
  "aws-lc-rs",
@@ -1704,7 +1735,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-ui-egui"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "arboard",
  "base64 0.22.1",
@@ -1740,11 +1771,12 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
+ "winsafe",
 ]
 
 [[package]]
 name = "dreamlab-pdf-web"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-ui-egui",
  "eframe",
@@ -1756,7 +1788,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-xfa"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "base64 0.22.1",
  "dreamlab-pdf-cos",
@@ -1770,7 +1802,7 @@ dependencies = [
 
 [[package]]
 name = "dreamlab-pdf-xfdf"
-version = "0.6.0"
+version = "0.7.1"
 dependencies = [
  "dreamlab-pdf-annot",
  "dreamlab-pdf-cos",
@@ -2184,7 +2216,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -2807,6 +2839,7 @@ dependencies = [
  "memchr",
  "rustc-hash 2.1.3",
  "smallvec",
+ "stringprep",
  "zune-jpeg",
 ]
 
@@ -4883,7 +4916,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys 0.12.1",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5509,7 +5542,7 @@ dependencies = [
  "getrandom 0.4.3",
  "once_cell",
  "rustix 1.1.5",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -5777,7 +5810,7 @@ checksum = "f2f6fb2847f6742cd76af783a2a2c49e9375d0a111c7bef6f71cd9e738c72d6e"
 dependencies = [
  "memoffset",
  "tempfile",
- "windows-sys 0.61.2",
+ "windows-sys 0.60.2",
 ]
 
 [[package]]
@@ -6469,7 +6502,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]

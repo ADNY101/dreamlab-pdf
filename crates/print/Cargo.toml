@@ -9,6 +9,7 @@ license.workspace = true
 workspace = true
 
 [dependencies]
+craft-print = { workspace = true }
 dreamlab-pdf-cos = { workspace = true }
 dreamlab-pdf-content = { workspace = true }
 dreamlab-pdf-model = { workspace = true }

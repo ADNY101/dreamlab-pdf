@@ -521,7 +521,7 @@ impl Automation {
         let path = self.resolve(a.str("path")?, true)?;
         let ext = path.extension().map(|e| e.to_string_lossy().into_owned()).unwrap_or_default();
         let format =
-            dreamlab_pdf_engine::DataFormat::from_extension(&ext).ok_or_else(|| bad("the path must end in .xfdf, .fdf, .xml, .csv or .txt"))?;
+            dreamlab_pdf_engine::DataFormat::from_extension(&ext).ok_or_else(|| bad("the path must end in .xfdf, .fdf, .xml, .xdp, .csv or .txt"))?;
         let (comments, fields) = match a.opt_str("what")?.unwrap_or("all") {
             "all" => (true, true),
             "comments" => (true, false),

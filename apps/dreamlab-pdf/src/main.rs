@@ -4,10 +4,10 @@
 //! `--create-images [images…]` stages the images in one PDF and asks for the page DPI.
 //!
 //! View options (applied after the files open; also the seed of the UI control channel):
-//! `--page N  --zoom 150  --layout continuous|two-up|single  --panel comments|bookmarks|pages|fields|layers|attachments|none
+//! `--page N  --zoom 150  --layout single|continuous|two-up|two-page  --continuous on|off  --panel comments|bookmarks|pages|fields|layers|attachments|none
 //!  --theme light|dark|system  --language auto|<code>  --mode all|read|edit|convert|sign  --tool <catalogue id>  --left open|closed
 //!  --organize on  --fields on  --dialog properties|shortcuts|about  --palette <query>  --home on
-//!  --cover on|off  --default-layout continuous|two-up|single  --default-zoom fit-width|fit-page|<percent>
+//!  --cover on|off  --default-layout single|continuous|two-up|two-page  --default-continuous on|off  --default-zoom fit-width|fit-page|<percent>
 //!  --combine-view grid|list  --combine-zoom 60..200`
 //!
 //! `--new-window` opens a window of its own. Without it, on Windows, a launch that only names files
@@ -33,6 +33,9 @@ use dreamlab_pdf_ui_egui::DreamLabPdfApp;
 mod apple_events;
 mod compositor_gpu;
 mod logging;
+#[cfg(target_os = "windows")]
+mod motion;
+mod reopen;
 mod single_instance;
 mod text_scale;
 mod updates;
@@ -300,11 +303,23 @@ fn app_creator<'a>(
     Box::new(move |cc| {
         started.set(true);
         let mut app = DreamLabPdfApp::new();
+        // First start (or settings from before Units existed): the region's unit.
+        app.units = dreamlab_pdf_ui_egui::units::Unit::system();
+        #[cfg(target_os = "linux")]
+        app.enable_desktop_theme();
+        // The system's reopen-windows choice (macOS) starts the preference; a saved choice replaces it.
+        app.reopen_last_session = reopen::system_default();
         if let Some(json) = cc.storage.and_then(|s| s.get_string("dreamlab-pdf").or_else(|| s.get_string(LEGACY_STORAGE_KEY))) {
             app.restore(&json);
         }
         app.integrated_titlebar = integrated;
         app.system_text_scale = text_scale::system();
+        // Windows' Animation effects setting, which Preferences ▸ Animation effects follows unless
+        // it is set to On or Off.
+        #[cfg(target_os = "windows")]
+        {
+            app.motion.source = Some(motion::source());
+        }
         app.update_source = Some(std::sync::Arc::new(updates::latest_release));
         app.printer_source = Some(dreamlab_pdf_ui_egui::system_printers());
         app.os_key_store_ids = cfg!(any(target_os = "macos", target_os = "windows"));
@@ -665,6 +680,19 @@ mod tests {
         Ok(Endpoint { port: 4321, token: "0123456789abcdef".into() })
     }
 
+    /// Tests that open a real GPU device take this first, so only one of them is inside the
+    /// graphics libraries at a time. The test threads otherwise run them together, and on
+    /// FreeBSD's CI machine the test process then died with SIGSEGV, in about half the runs:
+    /// the first device was still being set up when the second test began its own. The UI
+    /// tests take turns the same way (`crates/ui-egui/tests/view.rs`). Hold it for the whole
+    /// test (declared before the instance, so it's released after the device is dropped).
+    static GPU: std::sync::Mutex<()> = std::sync::Mutex::new(());
+
+    fn gpu() -> std::sync::MutexGuard<'static, ()> {
+        // A test that panicked while holding it leaves nothing to clean up.
+        GPU.lock().unwrap_or_else(std::sync::PoisonError::into_inner)
+    }
+
     #[test]
     fn a_control_channel_that_cant_be_published_stops_the_app() {
         let dir = std::env::temp_dir().join(format!("dreamlab-pdf-app-control-{}", std::process::id()));
@@ -871,6 +899,7 @@ mod tests {
         // and an error wgpu raises before anything reaches the driver: a texture one pixel wider
         // than the device allows.
         use eframe::wgpu;
+        let _gpu = gpu();
         let native = super::native_options(false, eframe::Renderer::Wgpu);
         let eframe::egui_wgpu::WgpuSetup::CreateNew(setup) = &native.wgpu_options.wgpu_setup else {
             panic!("default setup creates its own instance")
@@ -937,6 +966,7 @@ mod tests {
     #[test]
     fn pipeline_creation_error_is_returned_and_device_remains_usable() {
         use eframe::{egui_wgpu, wgpu};
+        let _gpu = gpu();
         let mut native = super::native_options(false, eframe::Renderer::Wgpu);
         let egui_wgpu::WgpuSetup::CreateNew(setup) = &native.wgpu_options.wgpu_setup else { panic!("default setup creates its own instance") };
         let instance = pollster::block_on(native.wgpu_options.wgpu_setup.new_instance());
