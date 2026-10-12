@@ -12,6 +12,9 @@
 #
 #   packaging/windows/build-setup.sh            # build + package
 #   SKIP_BUILD=1 packaging/windows/build-setup.sh
+#   WITH_CLI=1 packaging/windows/build-setup.sh    # put the CLI in setup.exe too (larger)
+#
+# Writes to dist/release/: the setup.exe, a portable zip of the app, and the CLI as its own zip.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
@@ -61,6 +64,21 @@ open(sys.argv[1], "w", newline="\r\n").write(s)
 PY
 
 OUT="$DIST/dreamlab-pdf-$VERSION-windows-x64-setup.exe"
-(cd packaging/windows/nsis && makensis -V2 -DVERSION="$VERSION" -DSTAGE="$STAGE" -DOUTFILE="$OUT" dreamlab-pdf.nsi)
-(cd "$DIST" && sha256sum "$(basename "$OUT")" > "$(basename "$OUT").sha256")
-echo "wrote $OUT"
+nsis_cli=()
+[ -n "${WITH_CLI:-}" ] && nsis_cli=(-DWITH_CLI)
+(cd packaging/windows/nsis && makensis -V2 "${nsis_cli[@]}" -DVERSION="$VERSION" -DSTAGE="$STAGE" -DOUTFILE="$OUT" dreamlab-pdf.nsi)
+
+# Portable app (portable.txt keeps settings beside the exe) and the CLI, each as its own zip.
+PORT="$ROOT/target/portable"
+APPDIR="$PORT/app/dreamlab-pdf-$VERSION-windows-x64-portable"
+CLIDIR="$PORT/cli/dreamlab-pdf-cli-$VERSION-windows-x64"
+rm -rf "$PORT" && mkdir -p "$APPDIR/models" "$CLIDIR"
+cp "$STAGE/dreamlab-pdf.exe" "$STAGE/"*.txt "$STAGE/get-ocr-models.ps1" "$APPDIR/"
+cp "$STAGE/models/ATTRIBUTION.txt" "$APPDIR/models/"
+crlf packaging/windows/portable.txt "$APPDIR/portable.txt"
+cp "$STAGE/dreamlab-pdf-cli.exe" "$STAGE/"*.txt "$CLIDIR/"
+rm -f "$DIST/dreamlab-pdf-$VERSION-windows-x64-portable.zip" "$DIST/dreamlab-pdf-cli-$VERSION-windows-x64.zip"
+(cd "$PORT/app" && zip -q -9 -r "$DIST/dreamlab-pdf-$VERSION-windows-x64-portable.zip" .)
+(cd "$PORT/cli" && zip -q -9 -r "$DIST/dreamlab-pdf-cli-$VERSION-windows-x64.zip" .)
+(cd "$DIST" && sha256sum dreamlab-pdf-*"$VERSION"-windows-x64* | grep -v '\.sha256' > "SHA256SUMS-$VERSION-windows-x64.txt")
+ls -la "$DIST"

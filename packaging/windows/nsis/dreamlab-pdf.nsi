@@ -6,6 +6,9 @@
 ; "Open with" and Settings > Default apps, never forced as the default), and the "Create PDF with
 ; DreamLab PDF..." image context menu. Adds: optional OCR model download, optional CLI on PATH.
 ;
+; -DWITH_CLI also installs dreamlab-pdf-cli.exe (and offers it on PATH). Without it the CLI ships
+; as its own zip, which keeps setup.exe small.
+;
 ; Silent install:  setup.exe /S [/NODESKTOP] [/NOOCR] [/CLIPATH] [/D=C:\Path\To\Install]
 ; Silent removal:  "C:\Program Files\DreamLab PDF\uninstall.exe" /S
 
@@ -94,7 +97,9 @@ Section "${APPNAME} (required)" SecMain
   SetShellVarContext all
   SetOutPath "$INSTDIR"
   File "${STAGE}\${EXE}"
-  File "${STAGE}\dreamlab-pdf-cli.exe"
+  !ifdef WITH_CLI
+    File "${STAGE}\dreamlab-pdf-cli.exe"
+  !endif
   File "${STAGE}\get-ocr-models.ps1"
   File "${STAGE}\LICENSE-MIT.txt"
   File "${STAGE}\LICENSE-APACHE.txt"
@@ -181,6 +186,7 @@ Section "OCR models (download, about 12 MB)" SecOcr
   ${EndIf}
 SectionEnd
 
+!ifdef WITH_CLI
 Section /o "Add dreamlab-pdf-cli to PATH" SecPath
   ; System PATH, appended once. PowerShell does the string work and keeps REG_EXPAND_SZ.
   nsExec::ExecToLog `powershell.exe -NoProfile -NonInteractive -Command "$$k='HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment'; $$p=(Get-Item $$k).GetValue('Path','',[Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames); $$d='$INSTDIR'; if (($$p -split ';') -notcontains $$d) { Set-ItemProperty $$k -Name Path -Type ExpandString -Value (($$p.TrimEnd(';')) + ';' + $$d) }"`
@@ -188,16 +194,21 @@ Section /o "Add dreamlab-pdf-cli to PATH" SecPath
   WriteRegDWORD HKLM "${APPKEY}" "OnPath" 1
   SendMessage ${HWND_BROADCAST} ${WM_SETTINGCHANGE} 0 "STR:Environment" /TIMEOUT=5000
 SectionEnd
+!endif
 
-LangString DESC_Main    ${LANG_ENGLISH} "The DreamLab PDF app and command-line tool, Start Menu shortcut, and registration as a PDF handler (you choose the default in Settings)."
+LangString DESC_Main    ${LANG_ENGLISH} "The DreamLab PDF app, Start Menu shortcut, and registration as a PDF handler (you choose the default in Settings)."
 LangString DESC_Desktop ${LANG_ENGLISH} "A DreamLab PDF shortcut on the desktop for all users."
 LangString DESC_Ocr     ${LANG_ENGLISH} "Downloads the text-recognition models used by Scan & OCR (CC-BY-SA-4.0, verified by SHA-256). Needs an internet connection."
+!ifdef WITH_CLI
 LangString DESC_Path    ${LANG_ENGLISH} "Lets you run dreamlab-pdf-cli from any terminal (adds the install folder to the system PATH)."
+!endif
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${SecMain}    $(DESC_Main)
   !insertmacro MUI_DESCRIPTION_TEXT ${SecDesktop} $(DESC_Desktop)
   !insertmacro MUI_DESCRIPTION_TEXT ${SecOcr}     $(DESC_Ocr)
-  !insertmacro MUI_DESCRIPTION_TEXT ${SecPath}    $(DESC_Path)
+  !ifdef WITH_CLI
+    !insertmacro MUI_DESCRIPTION_TEXT ${SecPath}    $(DESC_Path)
+  !endif
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ; ---- Functions -------------------------------------------------------------------------------
@@ -224,11 +235,13 @@ Function .onInit
   ${IfNot} ${Errors}
     !insertmacro UnselectSection ${SecOcr}
   ${EndIf}
-  ClearErrors
-  ${GetOptions} $R0 "/CLIPATH" $R1
-  ${IfNot} ${Errors}
-    !insertmacro SelectSection ${SecPath}
-  ${EndIf}
+  !ifdef WITH_CLI
+    ClearErrors
+    ${GetOptions} $R0 "/CLIPATH" $R1
+    ${IfNot} ${Errors}
+      !insertmacro SelectSection ${SecPath}
+    ${EndIf}
+  !endif
 FunctionEnd
 
 ; The installer runs elevated; launching through Explorer starts the app as the signed-in user,

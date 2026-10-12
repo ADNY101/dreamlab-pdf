@@ -186,7 +186,8 @@ CRAFT_FONTS_DIR=../craft-fonts cargo run --release -p dreamlab-pdf -- some.pdf
 packages it with NSIS as `dist/release/dreamlab-pdf-<ver>-windows-x64-setup.exe`: per-machine install,
 Start Menu and optional desktop shortcut, PDF handler registration, "Create PDF" on images, optional
 OCR model download and optional CLI on PATH, with a clean uninstaller. Silent install:
-`setup.exe /S [/NODESKTOP] [/NOOCR] [/CLIPATH] [/D=C:\Path]`; silent removal: `uninstall.exe /S`.
+`setup.exe /S [/NODESKTOP] [/NOOCR] [/D=C:\Path]`; silent removal: `uninstall.exe /S`. It also writes a
+portable zip of the app and the CLI as its own zip; `WITH_CLI=1` puts the CLI in setup.exe too.
 
 Packaging scripts for every platform (MSI, DMG, AppImage, Flatpak, `.deb`, `.rpm`, FreeBSD, web) are in
 [`packaging/`](packaging/). Logs, environment variables and other development notes are in
