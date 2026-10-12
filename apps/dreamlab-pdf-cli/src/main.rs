@@ -140,9 +140,8 @@ fn stdout_line(line: std::fmt::Arguments<'_>) -> Result<(), CliError> {
 
 fn version() -> Result<(), CliError> {
     stdout_line(format_args!("dreamlab-pdf-cli {}", env!("CARGO_PKG_VERSION")))?;
-    stdout_line(format_args!("Discord: {}  (help and feedback)", dreamlab_pdf_engine::links::DISCORD))?;
-    stdout_line(format_args!("Web:     {}", dreamlab_pdf_engine::links::APP_PAGE))?;
-    stdout_line(format_args!("Source:  {}", dreamlab_pdf_engine::links::GITHUB))?;
+    stdout_line(format_args!("Feedback: {}", dreamlab_pdf_engine::links::FEEDBACK))?;
+    stdout_line(format_args!("Source:   {}", dreamlab_pdf_engine::links::GITHUB))?;
     Ok(())
 }
 

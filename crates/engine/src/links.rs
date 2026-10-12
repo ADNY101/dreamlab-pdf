@@ -1,15 +1,20 @@
-//! Where DreamLab PDF and the ArtCraft community live on the web. One table, so the Help menu, the
-//! About dialog, the home screen, the CLI and the README agree.
+//! Where DreamLab PDF lives on the web. One table, so the Help menu, the About dialog, the home
+//! screen, the CLI and the README agree.
+//!
+//! DreamLab PDF is based on PdfCraft by the ArtCraft team (MIT OR Apache-2.0).
 
 use icu_properties::props::Script;
 
-/// The app's name in ArtCraft URLs (`getartcraft.com/apps/{APP}`, `github.com/storytold/{APP}`).
+/// The repository name (`github.com/{OWNER}/{APP}`).
 pub const APP: &str = "dreamlab-pdf";
+/// The GitHub account that publishes DreamLab PDF.
+pub const OWNER: &str = "mad10188";
 
-pub const DISCORD: &str = "https://github.com/mad10188/dreamlab-pdf/issues";
-pub const WEBSITE: &str = "https://getartcraft.com";
-pub const APP_PAGE: &str = "https://github.com/mad10188/dreamlab-pdf";
 pub const GITHUB: &str = "https://github.com/mad10188/dreamlab-pdf";
+/// Where people report problems and ask for features.
+pub const FEEDBACK: &str = "https://github.com/mad10188/dreamlab-pdf/issues";
+/// The app's home page (the repository, until it has a site of its own).
+pub const APP_PAGE: &str = GITHUB;
 
 /// A link and the registry command that opens it.
 #[derive(Clone, Copy, Debug)]
@@ -21,12 +26,10 @@ pub struct Link {
     pub icon: &'static str,
 }
 
-/// In the order they are shown. Discord comes first: it is where people get help fastest.
+/// In the order they are shown. Feedback comes first: it is where people get help.
 pub const LINKS: &[Link] = &[
-    Link { command: "help.discord", label: "Join the ArtCraft Discord", url: DISCORD, icon: "messages-square" },
-    Link { command: "help.app_page", label: "DreamLab PDF web page", url: APP_PAGE, icon: "globe" },
+    Link { command: "help.feedback", label: "Send feedback", url: FEEDBACK, icon: "messages-square" },
     Link { command: "help.github", label: "DreamLab PDF on GitHub", url: GITHUB, icon: "code-xml" },
-    Link { command: "help.website", label: "ArtCraft website", url: WEBSITE, icon: "external-link" },
 ];
 
 pub fn for_command(id: &str) -> Option<&'static Link> {
@@ -340,9 +343,9 @@ fn mixes_scripts(label: &str) -> bool {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn urls_follow_the_artcraft_scheme() {
-        assert_eq!(super::APP_PAGE, format!("{}/apps/{}", super::WEBSITE, super::APP));
-        assert_eq!(super::GITHUB, format!("https://github.com/storytold/{}", super::APP));
+    fn urls_point_at_the_repository() {
+        assert_eq!(super::GITHUB, format!("https://github.com/{}/{}", super::OWNER, super::APP));
+        assert_eq!(super::FEEDBACK, format!("{}/issues", super::GITHUB));
         for l in super::LINKS {
             assert!(l.url.starts_with("https://"), "{}", l.url);
             assert!(crate::commands::command(l.command).is_some(), "{} is a registered command", l.command);

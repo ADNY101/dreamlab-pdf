@@ -1,0 +1,138 @@
+# DreamLab PDF: mechanical rebrand of upstream PdfCraft (https://github.com/storytold/pdfcraft).
+# Applied by tools/rebrand/rebrand.py; see tools/rebrand/README.md.
+
+skip_dirs = ["vendor"]          # vendored third-party crates keep their own text ("PdfCraft patch" notes)
+delete = ["docs/brand", "docs/images"]   # ArtCraft marks (must be removed from forks); upstream screenshots
+
+# Run in the rebranded tree after rebrand.py, cargo fmt and the Cargo.lock refresh.
+[post]
+commands = [
+  'python3 "$REBRAND_DIR/attribution_hashes.py" ATTRIBUTION.toml',
+  'cargo xtask assets --write',
+]
+
+# Merge conflicts that resolve themselves (tools/rebrand/resolve_generated.py).
+[merge]
+hash_files = ["ATTRIBUTION.toml"]
+regenerate = [{ file = "ATTRIBUTION.md", command = "cargo xtask assets --write" }]
+
+[upstream]
+repo = "https://github.com/storytold/pdfcraft.git"
+branch = "main"
+
+
+# ---- Kept verbatim: upstream history and records -------------------------------------------
+[[protect]]
+pattern = 'storytold/pdfcraft(?:/issues/\d+|/pull/\d+|#\d+)'
+[[protect]]
+pattern = '"repo": "storytold/pdfcraft"'
+files = ["contributors/contributors.json"]
+[[protect]]
+pattern = 'PrintCraft is renamed PdfCraft[^\n]*'
+files = ["ROADMAP.md"]
+
+# ---- URLs, company and maintainer --------------------------------------------------------------
+[[text]]
+pattern = 'https://getartcraft\.com/apps/pdfcraft'
+replace = 'https://github.com/mad10188/dreamlab-pdf'
+[[text]]
+pattern = 'https://discord\.gg/artcraft'
+replace = 'https://github.com/mad10188/dreamlab-pdf/issues'
+[[text]]
+pattern = 'gh-releases-zsync\|storytold\|pdfcraft'
+replace = 'gh-releases-zsync|mad10188|dreamlab-pdf'
+[[text]]
+pattern = 'storytold/pdfcraft(?![\w-])'
+replace = 'mad10188/dreamlab-pdf'
+[[text]]
+pattern = 'pdfcraft@storyteller\.ai'
+replace = 'mad10188@users.noreply.github.com'
+[[text]]
+pattern = 'Learning Machines LLC'
+replace = 'DreamLab'
+[[text]]
+pattern = '<developer id="ai\.storyteller">'
+replace = '<developer id="com.dreamlab">'
+
+# ---- Windows installer: our own GUIDs (never share an UpgradeCode with upstream) -------------
+[[text]]
+pattern = 'EA00C367-7270-4C50-9D8B-A7A5C88AD27F'
+replace = '51D5EF44-D980-4328-878E-A636B57111D8'
+[[text]]
+pattern = 'E724C1C6-091F-4E21-A685-80D089FDBE21'
+replace = '73EBE13F-A053-4CB2-93CE-62E9DE4DC5B7'
+[[text]]
+pattern = 'DC028192-C233-4F99-9A77-ED458C60DF26'
+replace = 'A11CB8C9-1142-46DD-BD8A-FF1E31C343F5'
+[[text]]
+pattern = 'F6948627-32AB-4D78-8865-0FDF417CE442'
+replace = '95515CFD-4600-4B65-B48B-075609BADA13'
+
+# ---- Names ---------------------------------------------------------------------------------
+[[text]]
+pattern = 'ai\.storyteller\.pdfcraft'
+replace = 'com.dreamlab.pdf'
+[[text]]
+pattern = 'pdfcraft::'
+replace = 'dreamlab_pdf::'
+[[text]]
+pattern = 'pdfcraft_'
+replace = 'dreamlab_pdf_'
+[[text]]                     # identifiers ending in the name (run_pdfcraft); not Cargo's bin env vars
+pattern = '(?<!CARGO_BIN_EXE_)(?<=[A-Za-z0-9]_)pdfcraft\b'
+replace = 'dreamlab_pdf'
+files = ["*.rs"]
+[[text]]
+pattern = 'pdfcraft'
+replace = 'dreamlab-pdf'
+[[text]]
+pattern = 'PDFCRAFT'
+replace = 'DREAMLAB_PDF'
+[[text]]
+pattern = 'Pdfcraft'
+replace = 'DreamlabPdf'
+[[text]]
+pattern = 'PdfCraft(?=[A-Z_])'
+replace = 'DreamLabPdf'
+files = ["*.rs"]
+[[text]]                     # inflected languages: PdfCraftot -> DreamLab PDF-ot
+pattern = 'PdfCraft(?=[^\W\d_])'
+replace = 'DreamLab PDF-'
+[[text]]
+pattern = 'PdfCraft'
+replace = 'DreamLab PDF'
+
+# ---- Fix-ups the plain rename gets wrong ------------------------------------------------------
+[[text]]
+pattern = 'DreamLab PDF PDF workbench'
+replace = 'DreamLab PDF workbench'
+[[text]]                     # Windows ProgIDs and verbs may not contain spaces
+pattern = 'DreamLab PDF\.(?=[A-Z])'
+replace = 'DreamLabPDF.'
+[[text]]                     # log targets are module paths: underscores
+pattern = '(?<=["`,])dreamlab-pdf(?=[*=":])'
+replace = 'dreamlab_pdf'
+files = ["apps/pdfcraft/src/logging.rs"]
+[[text]]
+pattern = '`dreamlab-pdf\*=debug`'
+replace = '`dreamlab_pdf*=debug`'
+files = ["docs/development.md", "apps/pdfcraft/src/logging.rs"]
+
+# ---- File and directory names ------------------------------------------------------------------
+[[path]]
+pattern = 'ai\.storyteller\.pdfcraft'
+replace = 'com.dreamlab.pdf'
+[[path]]
+pattern = 'pdfcraft'
+replace = 'dreamlab-pdf'
+
+[check]
+leftover = ['(?i)pdf.?craft', '(?i)artcraft', '(?i)discord\.gg', '(?i)storyteller', '(?i)learning machines']
+allow = [
+  'storytold/pdfcraft', 'PdfCraft by the ArtCraft', 'PdfCraft contributors', 'version of PdfCraft',
+  'based on PdfCraft', 'PrintCraft is renamed PdfCraft', 'ArtCraft (name|Team|team)', 'the ArtCraft',
+  'craft-fonts', 'craft-libs', 'craft-common-actions', 'ArtCraft brand', 'ArtCraft marks',
+  'LicenseRef-Storyteller-Trademark', 'Upstream.s brand', 'Storyteller.s own brand', 'Was: shipped',
+  'tracking the PdfCraft', 'docs/brand/artcraft-mark', '"Storyteller"', 'upstream PdfCraft',
+]
+allow_files = ["vendor/*", "ATTRIBUTION.md", "ATTRIBUTION.toml", "tools/rebrand/*"]

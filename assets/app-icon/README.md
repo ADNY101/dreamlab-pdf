@@ -1,35 +1,26 @@
 # DreamLab PDF app icon
 
-<img src="dreamlab-pdf-small.svg" alt="DreamLab PDF app icon: an engraved lion's head on green" width="128">
+<img src="dreamlab-pdf-small.svg" alt="DreamLab PDF app icon: a page with a crescent moon and a sparkle on an indigo-to-violet tile" width="128">
 
-**Creature:** a lion, in a frontal head-and-shoulders portrait, mane running off the bottom of the tile.
+**Motif:** a document page with a folded corner, a crescent moon (the "dream") and two text lines, with a
+sparkle beside it.
 
-**Style:** an engraving (woodcut-weight line work) portrait in the Crafting Apps "owl template" framing:
-a full-bleed colour field, no frame or roundel, the animal looking at the viewer and filling the tile.
-
-**Palette:** exactly three colours.
-
-| Colour | Hex | Used for |
-|---|---|---|
-| Ink | `#0b0b0c` | line work and the figure's contour |
-| Paper | `#efe9dc` | the figure (the lion's silhouette) |
-| DreamLab PDF green (app colour) | `#12a58a` | the full-bleed field |
+**Palette:** indigo `#312e81` → violet `#7c3aed` tile gradient, paper `#f8f7ff`, accents `#6d28d9`,
+`#a5b4fc`, `#c4b5fd` and `#fde68a`.
 
 **Tile:** `viewBox="0 0 512 512"`, a rounded square with `rx=112` that clips everything. Windows and Linux
 icons use the full-bleed tile. macOS icons put it on Apple's grid (an 824 px body centred on a transparent
 1024 px canvas).
 
-**Provenance:** the project owner's original drawing, made in ArtCraft (2880 px, keyed to the palette), then
-vectorised with craftrules `assets/logo-options/_tools/vectorize_tile.py` (potrace; no filtering or
-warping). The source drawing is kept in craftrules at `assets/app-icons/dreamlab-pdf/source.png`, not here.
+**Provenance:** original placeholder artwork for DreamLab PDF, hand-written SVG.
 Licence: [LICENSE.txt](LICENSE.txt) (`MIT OR Apache-2.0`, like the repo).
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `dreamlab-pdf.svg` | the master vector (traced at 2048 px); every PNG, `.ico` and `.icns` is rendered from it |
-| `dreamlab-pdf-small.svg` | a lighter vector (traced at 1024 px) for places where size matters, such as this README |
+| `dreamlab-pdf.svg` | the master vector; every PNG, `.ico` and `.icns` is rendered from it |
+| `dreamlab-pdf-small.svg` | a copy of the master for places such as this README |
 | `dreamlab-pdf-1024.png` | 1024 px on Apple's grid; also the runtime Dock icon on macOS |
 | `dreamlab-pdf.icns` | macOS icon (16–1024 px) |
 | `dreamlab-pdf.ico` | Windows icon (16–256 px), embedded in `dreamlab-pdf.exe` by `apps/dreamlab-pdf/build.rs` |

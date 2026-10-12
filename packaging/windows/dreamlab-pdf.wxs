@@ -71,7 +71,7 @@
              run as a file handler ("This app can't run on your PC"). -->
         <RegistryValue Root="HKLM" Key="Software\Classes\DreamLabPDF.Document" Value="PDF Document" Type="string" />
         <!-- A negative index selects the stable icon resource ID, rather than its position.
-             Resource 1 is the app's lion; resource 2 is the PDF document (build.rs). -->
+             Resource 1 is the app icon; resource 2 is the PDF document (build.rs). -->
         <RegistryValue Root="HKLM" Key="Software\Classes\DreamLabPDF.Document\DefaultIcon" Value="&quot;[#DreamlabPdfExe]&quot;,-2" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\DreamLabPDF.Document\shell\open\command" Value="&quot;[#DreamlabPdfExe]&quot; &quot;%1&quot;" Type="string" />
         <RegistryValue Root="HKLM" Key="Software\Classes\.pdf\OpenWithProgids" Name="DreamLabPDF.Document" Value="" Type="string" />

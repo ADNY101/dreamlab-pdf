@@ -1317,7 +1317,6 @@
 	Select all pages (Organize)	Избери всички страници (Организиране)
 	Version {v}	Версия {v}
 	A clean-room, open-source PDF application written in Rust. MIT OR Apache-2.0.	Независимо разработено PDF приложение с отворен код, написано на Rust. MIT OR Apache-2.0.
-	Part of	Част от
 	Summarize Options	Опции за обобщение
 	Choose a layout:	Изберете оформление:
 	Comments only	Само коментари
@@ -1773,13 +1772,10 @@
 	Split document…	Раздели документа…
 	Number pages…	Номерирай страниците…
 	Keyboard shortcuts	Клавишни комбинации
-	Join the ArtCraft Discord	Присъедини се към ArtCraft в Discord
-	Join the ArtCraft community	Присъедини се към общността на ArtCraft
-	Get help, share feedback and follow development on Discord.	Получете помощ, споделете мнение и следете разработката в Discord.
-	Join our Discord	Присъедини се към нашия Discord
-	DreamLab PDF web page	Уебстраница на DreamLab PDF
+	Send feedback	Изпрати обратна връзка
+	Help and feedback	Помощ и обратна връзка
+	Report problems, request features and follow development on GitHub.	Докладвайте проблеми, предлагайте функции и следете разработката в GitHub.
 	DreamLab PDF on GitHub	DreamLab PDF в GitHub
-	ArtCraft website	Уебсайт на ArtCraft
 	Check for updates…	Провери за актуализации…
 	About DreamLab PDF	За DreamLab PDF
 	JavaScript console…	JavaScript конзола…

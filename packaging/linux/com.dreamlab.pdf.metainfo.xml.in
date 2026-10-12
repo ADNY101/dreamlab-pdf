@@ -33,15 +33,9 @@
     <keyword>annotate</keyword>
     <keyword>forms</keyword>
   </keywords>
-  <screenshots>
-    <screenshot type="default">
-      <caption>A PDF open with its threaded comments</caption>
-      <image>https://raw.githubusercontent.com/mad10188/dreamlab-pdf/main/docs/images/dreamlab-pdf-viewer.png</image>
-    </screenshot>
-  </screenshots>
   <branding>
-    <color type="primary" scheme_preference="light">#9fd0ff</color>
-    <color type="primary" scheme_preference="dark">#1f64ba</color>
+    <color type="primary" scheme_preference="light">#c4b5fd</color>
+    <color type="primary" scheme_preference="dark">#4c1d95</color>
   </branding>
   <requires>
     <display_length compare="ge">760</display_length>

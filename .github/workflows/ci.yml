@@ -4,9 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-  workflow_dispatch:
-  schedule:
-    - cron: "17 3 * * *" # nightly fuzzing
+  workflow_dispatch: # fuzzing runs on manual dispatch (no nightly cron: private-repo Actions minutes)
 
 env:
   CARGO_TERM_COLOR: always
