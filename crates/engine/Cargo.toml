@@ -18,6 +18,7 @@ dreamlab-pdf-annot = { workspace = true }
 dreamlab-pdf-forms = { workspace = true }
 dreamlab-pdf-xfa = { workspace = true }
 dreamlab-pdf-edit = { workspace = true }
+dreamlab-pdf-audit = { workspace = true }
 dreamlab-pdf-redact = { workspace = true }
 dreamlab-pdf-print = { workspace = true }
 dreamlab-pdf-xfdf = { workspace = true }

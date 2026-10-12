@@ -16,6 +16,7 @@ workspace = true
 dreamlab-pdf-render = { workspace = true }
 serde_json = { workspace = true }
 dreamlab-pdf-engine = { workspace = true }
+dreamlab-pdf-audit = { workspace = true }
 dreamlab-pdf-cos = { workspace = true }
 dreamlab-pdf-automation = { workspace = true }
 base64 = "0.22"
