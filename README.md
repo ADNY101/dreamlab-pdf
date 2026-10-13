@@ -159,7 +159,7 @@ DreamLab PDF is a clean-room implementation. Its behaviour comes from the ISO 32
 You need a recent stable Rust toolchain (1.95 or newer for the desktop app).
 
 ```sh
-git clone https://github.com/mad10188/dreamlab-pdf
+git clone https://github.com/ADNY101/dreamlab-pdf
 cd dreamlab-pdf
 cargo run --release -p dreamlab-pdf -- some.pdf        # desktop app
 cargo run --release -p dreamlab-pdf-cli -- --help      # command-line tool and MCP server
@@ -213,7 +213,7 @@ commenting, form filling, passwords, redaction and agent control work well; edit
 non-Latin OCR, Office import/export and Windows printing are thin. Details are in
 [ROADMAP.md](ROADMAP.md), [docs/gaps.md](docs/gaps.md) and [docs/target-app-parity.md](docs/target-app-parity.md).
 
-Bugs and ideas: [open an issue](https://github.com/mad10188/dreamlab-pdf/issues).
+Bugs and ideas: [open an issue](https://github.com/ADNY101/dreamlab-pdf/issues).
 
 ## License and credits
 

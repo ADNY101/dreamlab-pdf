@@ -39,7 +39,7 @@ SetCompressor /SOLID lzma
 !define VERB        "DreamLabPDF.CreatePdf"
 !define UNINSTKEY   "Software\Microsoft\Windows\CurrentVersion\Uninstall\DreamLab PDF"
 !define APPKEY      "Software\DreamLab PDF"
-!define URL         "https://github.com/mad10188/dreamlab-pdf"
+!define URL         "https://github.com/ADNY101/dreamlab-pdf"
 
 Name "${APPNAME}"
 OutFile "${OUTFILE}"

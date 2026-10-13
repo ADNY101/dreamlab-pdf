@@ -23,12 +23,12 @@ fn feedback_button_in_the_top_bar_opens_the_issue_tracker() {
     h.get_by_label("Feedback").click();
     h.run_steps(2);
     assert_eq!(h.state().last_opened_url.as_deref(), Some(links::FEEDBACK));
-    assert_eq!(links::FEEDBACK, "https://github.com/mad10188/dreamlab-pdf/issues");
+    assert_eq!(links::FEEDBACK, "https://github.com/ADNY101/dreamlab-pdf/issues");
 }
 
 #[test]
 fn home_screen_links() {
-    for (label, url) in [("Send feedback", links::FEEDBACK), ("DreamLab PDF on GitHub", "https://github.com/mad10188/dreamlab-pdf")] {
+    for (label, url) in [("Send feedback", links::FEEDBACK), ("DreamLab PDF on GitHub", "https://github.com/ADNY101/dreamlab-pdf")] {
         let mut h = harness(|_| {});
         h.get_by_label("Help and feedback");
         h.get_by_label(label).click();

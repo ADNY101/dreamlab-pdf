@@ -34,19 +34,19 @@ files = ["ROADMAP.md"]
 # ---- URLs, company and maintainer --------------------------------------------------------------
 [[text]]
 pattern = 'https://getartcraft\.com/apps/pdfcraft'
-replace = 'https://github.com/mad10188/dreamlab-pdf'
+replace = 'https://github.com/ADNY101/dreamlab-pdf'
 [[text]]
 pattern = 'https://discord\.gg/artcraft'
-replace = 'https://github.com/mad10188/dreamlab-pdf/issues'
+replace = 'https://github.com/ADNY101/dreamlab-pdf/issues'
 [[text]]
 pattern = 'gh-releases-zsync\|storytold\|pdfcraft'
-replace = 'gh-releases-zsync|mad10188|dreamlab-pdf'
+replace = 'gh-releases-zsync|ADNY101|dreamlab-pdf'
 [[text]]
 pattern = 'storytold/pdfcraft(?![\w-])'
-replace = 'mad10188/dreamlab-pdf'
+replace = 'ADNY101/dreamlab-pdf'
 [[text]]
 pattern = 'pdfcraft@storyteller\.ai'
-replace = 'mad10188@users.noreply.github.com'
+replace = 'ADNY101@users.noreply.github.com'
 [[text]]
 pattern = 'Learning Machines LLC'
 replace = 'DreamLab'

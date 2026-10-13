@@ -4,7 +4,7 @@ use std::time::Duration;
 
 use dreamlab_pdf_ui_egui::updates::{RELEASES_PAGE, Release};
 
-const LATEST: &str = "https://api.github.com/repos/mad10188/dreamlab-pdf/releases/latest";
+const LATEST: &str = "https://api.github.com/repos/ADNY101/dreamlab-pdf/releases/latest";
 
 /// The latest release. The answer is untrusted: its size is capped, and only a page under
 /// [`RELEASES_PAGE`] is ever offered for download (anything else falls back to that list).
@@ -86,9 +86,9 @@ mod tests {
 
     #[test]
     fn answers_are_read_and_only_our_release_pages_are_offered() {
-        let r = parse(r#"{"tag_name":"v0.2.0","html_url":"https://github.com/mad10188/dreamlab-pdf/releases/tag/v0.2.0"}"#).unwrap();
-        assert_eq!(r, Release { version: "v0.2.0".into(), url: "https://github.com/mad10188/dreamlab-pdf/releases/tag/v0.2.0".into() });
-        for elsewhere in ["https://example.com/dreamlab-pdf.exe", "https://github.com/mad10188/dreamlab-pdf/releases.evil/x", "javascript:alert(1)"] {
+        let r = parse(r#"{"tag_name":"v0.2.0","html_url":"https://github.com/ADNY101/dreamlab-pdf/releases/tag/v0.2.0"}"#).unwrap();
+        assert_eq!(r, Release { version: "v0.2.0".into(), url: "https://github.com/ADNY101/dreamlab-pdf/releases/tag/v0.2.0".into() });
+        for elsewhere in ["https://example.com/dreamlab-pdf.exe", "https://github.com/ADNY101/dreamlab-pdf/releases.evil/x", "javascript:alert(1)"] {
             let r = parse(&format!(r#"{{"tag_name":"v9.9.9","html_url":"{elsewhere}"}}"#)).unwrap();
             assert_eq!(r.url, RELEASES_PAGE, "{elsewhere}");
         }

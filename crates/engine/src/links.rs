@@ -9,11 +9,11 @@ use std::path::{Path, PathBuf};
 /// The repository name (`github.com/{OWNER}/{APP}`).
 pub const APP: &str = "dreamlab-pdf";
 /// The GitHub account that publishes DreamLab PDF.
-pub const OWNER: &str = "mad10188";
+pub const OWNER: &str = "ADNY101";
 
-pub const GITHUB: &str = "https://github.com/mad10188/dreamlab-pdf";
+pub const GITHUB: &str = "https://github.com/ADNY101/dreamlab-pdf";
 /// Where people report problems and ask for features.
-pub const FEEDBACK: &str = "https://github.com/mad10188/dreamlab-pdf/issues";
+pub const FEEDBACK: &str = "https://github.com/ADNY101/dreamlab-pdf/issues";
 /// The app's home page (the repository, until it has a site of its own).
 pub const APP_PAGE: &str = GITHUB;
 
