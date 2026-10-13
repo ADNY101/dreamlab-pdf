@@ -12,7 +12,7 @@ use egui::{Align, Layout};
 use crate::{DreamLabPdfApp, theme, widgets};
 
 /// Where every DreamLab PDF release is listed.
-pub const RELEASES_PAGE: &str = "https://github.com/mad10188/dreamlab-pdf/releases";
+pub const RELEASES_PAGE: &str = "https://github.com/ADNY101/dreamlab-pdf/releases";
 
 /// The latest published release.
 #[derive(Clone, Debug, PartialEq, Eq)]

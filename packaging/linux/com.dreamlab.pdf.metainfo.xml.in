@@ -19,10 +19,10 @@
   <launchable type="desktop-id">com.dreamlab.pdf.desktop</launchable>
   <icon type="stock">com.dreamlab.pdf</icon>
   <!-- Only url types known to appstream 0.15 (Ubuntu 22.04, where CI validates): no vcs-browser. -->
-  <url type="homepage">https://github.com/mad10188/dreamlab-pdf</url>
-  <url type="bugtracker">https://github.com/mad10188/dreamlab-pdf/issues</url>
-  <url type="help">https://github.com/mad10188/dreamlab-pdf</url>
-  <url type="contact">https://github.com/mad10188/dreamlab-pdf/issues</url>
+  <url type="homepage">https://github.com/ADNY101/dreamlab-pdf</url>
+  <url type="bugtracker">https://github.com/ADNY101/dreamlab-pdf/issues</url>
+  <url type="help">https://github.com/ADNY101/dreamlab-pdf</url>
+  <url type="contact">https://github.com/ADNY101/dreamlab-pdf/issues</url>
   <categories>
     <category>Office</category>
     <category>Viewer</category>
@@ -36,7 +36,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>A PDF open with its threaded comments</caption>
-      <image>https://raw.githubusercontent.com/mad10188/dreamlab-pdf/main/docs/images/dreamlab-pdf-viewer.png</image>
+      <image>https://raw.githubusercontent.com/ADNY101/dreamlab-pdf/main/docs/images/dreamlab-pdf-viewer.png</image>
     </screenshot>
   </screenshots>
   <branding>

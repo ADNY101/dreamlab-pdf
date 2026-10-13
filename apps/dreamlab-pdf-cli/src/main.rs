@@ -64,7 +64,7 @@ dreamlab-pdf-cli run    --script steps.json [--root DIR]      [{\"tool\": \"doc_
     "\
 dreamlab-pdf-cli ui     --control FILE <method> [key=value …] [--out shot.png]
                                                            drive a running app started with --control FILE
-help and feedback: https://github.com/mad10188/dreamlab-pdf/issues"
+help and feedback: https://github.com/ADNY101/dreamlab-pdf/issues"
 );
 
 fn main() -> ExitCode {

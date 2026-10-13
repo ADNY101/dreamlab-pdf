@@ -23,15 +23,15 @@ fn discord_button_in_the_top_bar_opens_discord() {
     h.get_by_label("Discord").click();
     h.run_steps(2);
     assert_eq!(h.state().last_opened_url.as_deref(), Some(links::DISCORD));
-    assert_eq!(links::DISCORD, "https://github.com/mad10188/dreamlab-pdf/issues");
+    assert_eq!(links::DISCORD, "https://github.com/ADNY101/dreamlab-pdf/issues");
 }
 
 #[test]
 fn home_screen_links() {
     for (label, url) in [
         ("Join our Discord", links::DISCORD),
-        ("DreamLab PDF web page", "https://github.com/mad10188/dreamlab-pdf"),
-        ("DreamLab PDF on GitHub", "https://github.com/mad10188/dreamlab-pdf"),
+        ("DreamLab PDF web page", "https://github.com/ADNY101/dreamlab-pdf"),
+        ("DreamLab PDF on GitHub", "https://github.com/ADNY101/dreamlab-pdf"),
         ("ArtCraft website", "https://getartcraft.com"),
     ] {
         let mut h = harness(|_| {});

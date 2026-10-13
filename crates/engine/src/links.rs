@@ -7,10 +7,10 @@ use std::path::{Path, PathBuf};
 /// The app's name in ArtCraft URLs (`getartcraft.com/apps/{APP}`, `github.com/storytold/{APP}`).
 pub const APP: &str = "dreamlab-pdf";
 
-pub const DISCORD: &str = "https://github.com/mad10188/dreamlab-pdf/issues";
+pub const DISCORD: &str = "https://github.com/ADNY101/dreamlab-pdf/issues";
 pub const WEBSITE: &str = "https://getartcraft.com";
-pub const APP_PAGE: &str = "https://github.com/mad10188/dreamlab-pdf";
-pub const GITHUB: &str = "https://github.com/mad10188/dreamlab-pdf";
+pub const APP_PAGE: &str = "https://github.com/ADNY101/dreamlab-pdf";
+pub const GITHUB: &str = "https://github.com/ADNY101/dreamlab-pdf";
 
 /// A link and the registry command that opens it.
 #[derive(Clone, Copy, Debug)]

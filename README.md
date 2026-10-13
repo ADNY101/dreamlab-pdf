@@ -24,11 +24,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mad10188/dreamlab-pdf/issues"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
+  <a href="https://github.com/ADNY101/dreamlab-pdf/issues"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/mad10188/dreamlab-pdf"><b>DreamLab PDF on getartcraft.com</b></a> ·
+  <a href="https://github.com/ADNY101/dreamlab-pdf"><b>DreamLab PDF on getartcraft.com</b></a> ·
   <a href="https://getartcraft.com/">ArtCraft</a> ·
   <a href="https://getartcraft.com/apps">All Crafting Apps</a>
 </p>
@@ -43,7 +43,7 @@
 
 > [!NOTE]
 > **ArtCraft is a community of artists from all walks of life.** Digital, generative, music,
-> games &mdash; if you make things, you're one of us. **[Come say hi on Discord](https://github.com/mad10188/dreamlab-pdf/issues).**
+> games &mdash; if you make things, you're one of us. **[Come say hi on Discord](https://github.com/ADNY101/dreamlab-pdf/issues).**
 
 <p align="center">
   <a href="#highlights">Highlights</a> ·
@@ -68,9 +68,9 @@
 
 DreamLab PDF is part of [ArtCraft](https://getartcraft.com). Come say hello, get help and follow development:
 
-- **Discord: [discord.gg/artcraft](https://github.com/mad10188/dreamlab-pdf/issues)**. This is the fastest way to get help and share feedback. The app has a Discord button in its title bar.
-- **Web page:** [getartcraft.com/apps/dreamlab-pdf](https://github.com/mad10188/dreamlab-pdf)
-- **Source:** [github.com/mad10188/dreamlab-pdf](https://github.com/mad10188/dreamlab-pdf)
+- **Discord: [discord.gg/artcraft](https://github.com/ADNY101/dreamlab-pdf/issues)**. This is the fastest way to get help and share feedback. The app has a Discord button in its title bar.
+- **Web page:** [getartcraft.com/apps/dreamlab-pdf](https://github.com/ADNY101/dreamlab-pdf)
+- **Source:** [github.com/ADNY101/dreamlab-pdf](https://github.com/ADNY101/dreamlab-pdf)
 
 The ArtCraft name and logos in `docs/brand/` are trademarks of the ArtCraft Team and are not open source. They may be used only unmodified, and only as part of DreamLab PDF (see `docs/brand/LICENSE-brand.txt`). Forks and modified versions must remove them.
 
@@ -374,7 +374,7 @@ DreamLab PDF is a clean-room implementation. Its behaviour comes from the ISO 32
 Building needs Rust 1.95 or later.
 
 ```sh
-git clone https://github.com/mad10188/dreamlab-pdf
+git clone https://github.com/ADNY101/dreamlab-pdf
 cd dreamlab-pdf
 cargo xtask models                                # fetch the OCR models Scan & OCR needs (release builds include them)
 cargo run --release -p dreamlab-pdf -- some.pdf     # desktop app
@@ -398,7 +398,7 @@ git clone https://github.com/storytold/craft-fonts ../craft-fonts
 CRAFT_FONTS_DIR=../craft-fonts cargo run --release -p dreamlab-pdf -- some.pdf
 ```
 
-Each [GitHub release](https://github.com/mad10188/dreamlab-pdf/releases) has ready-made builds for macOS,
+Each [GitHub release](https://github.com/ADNY101/dreamlab-pdf/releases) has ready-made builds for macOS,
 Windows, Linux (AppImage, Flatpak, `.deb`, `.rpm` and a tarball), FreeBSD and the web; see
 [Downloads](#downloads). On Gentoo, the community [::snakebyte
 overlay](https://github.com/switch87/snakebyte-overlay) packages the Linux release as
@@ -432,9 +432,9 @@ The summary is in **[ROADMAP.md](ROADMAP.md)**; the full assessment by dimension
 
 ## Downloads
 
-**New to DreamLab PDF?** Download it from the [DreamLab PDF page on getartcraft.com](https://github.com/mad10188/dreamlab-pdf). That's the easiest way to install it.
+**New to DreamLab PDF?** Download it from the [DreamLab PDF page on getartcraft.com](https://github.com/ADNY101/dreamlab-pdf). That's the easiest way to install it.
 
-**Want a specific build or format?** On GitHub, the [latest release](https://github.com/mad10188/dreamlab-pdf/releases/latest) has every build listed below, and [all releases](https://github.com/mad10188/dreamlab-pdf/releases) has earlier versions and their notes. `<ver>` in the file names is the version number, and `SHA256SUMS.txt` lists a checksum for every file.
+**Want a specific build or format?** On GitHub, the [latest release](https://github.com/ADNY101/dreamlab-pdf/releases/latest) has every build listed below, and [all releases](https://github.com/ADNY101/dreamlab-pdf/releases) has earlier versions and their notes. `<ver>` in the file names is the version number, and `SHA256SUMS.txt` lists a checksum for every file.
 
 ### Windows
 
@@ -511,7 +511,7 @@ stand on its own.
 | <img src="https://raw.githubusercontent.com/storytold/vectorcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.vectorcraft.png" alt="" width="32" height="32"> | **VectorCraft** | Vector illustration | [GitHub](https://github.com/storytold/vectorcraft) | [Website](https://getartcraft.com/apps/vectorcraft) |
 | <img src="https://raw.githubusercontent.com/storytold/filmcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.filmcraft.png" alt="" width="32" height="32"> | **FilmCraft** | Video editing, color and sound | [GitHub](https://github.com/storytold/filmcraft) | [Website](https://getartcraft.com/apps/filmcraft) |
 | <img src="https://raw.githubusercontent.com/storytold/lightcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.lightcraft.png" alt="" width="32" height="32"> | **LightCraft** | Photo library and raw development | [GitHub](https://github.com/storytold/lightcraft) | [Website](https://getartcraft.com/apps/lightcraft) |
-| <img src="https://raw.githubusercontent.com/mad10188/dreamlab-pdf/main/assets/app-icon/hicolor/64x64/apps/com.dreamlab.pdf.png" alt="" width="32" height="32"> | **DreamLab PDF** | **Reading, organizing and protecting PDFs · you are here** | [GitHub](https://github.com/mad10188/dreamlab-pdf) | [Website](https://github.com/mad10188/dreamlab-pdf) |
+| <img src="https://raw.githubusercontent.com/ADNY101/dreamlab-pdf/main/assets/app-icon/hicolor/64x64/apps/com.dreamlab.pdf.png" alt="" width="32" height="32"> | **DreamLab PDF** | **Reading, organizing and protecting PDFs · you are here** | [GitHub](https://github.com/ADNY101/dreamlab-pdf) | [Website](https://github.com/ADNY101/dreamlab-pdf) |
 | <img src="https://raw.githubusercontent.com/storytold/effectcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.effectcraft.png" alt="" width="32" height="32"> | **EffectCraft** | Motion graphics and visual effects | [GitHub](https://github.com/storytold/effectcraft) | [Website](https://getartcraft.com/apps/effectcraft) |
 | <img src="https://raw.githubusercontent.com/storytold/designcraft/main/assets/app-icon/hicolor/64x64/apps/ai.storyteller.designcraft.png" alt="" width="32" height="32"> | **DesignCraft** | Page layout and publishing | [GitHub](https://github.com/storytold/designcraft) | [Website](https://getartcraft.com/apps/designcraft) |
 
@@ -520,7 +520,7 @@ And [**ArtCraft**](https://getartcraft.com/) itself, our AI image and video stud
 <br>
 
 <p align="center">
-  <a href="https://github.com/mad10188/dreamlab-pdf/issues"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
+  <a href="https://github.com/ADNY101/dreamlab-pdf/issues"><img alt="Join the ArtCraft community on Discord" src="https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" height="40"></a>
 </p>
 
 <h3 align="center">Come make things with us</h3>
@@ -533,10 +533,10 @@ And [**ArtCraft**](https://getartcraft.com/) itself, our AI image and video stud
 </p>
 
 <p align="center">
-  <a href="https://github.com/mad10188/dreamlab-pdf/issues"><b>discord.gg/artcraft</b></a> ·
+  <a href="https://github.com/ADNY101/dreamlab-pdf/issues"><b>discord.gg/artcraft</b></a> ·
   <a href="https://getartcraft.com/">getartcraft.com</a> ·
   <a href="https://getartcraft.com/apps">The Crafting Apps</a> ·
-  <a href="https://github.com/mad10188/dreamlab-pdf">DreamLab PDF</a>
+  <a href="https://github.com/ADNY101/dreamlab-pdf">DreamLab PDF</a>
 </p>
 
 ---

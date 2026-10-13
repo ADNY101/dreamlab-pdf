@@ -55,7 +55,7 @@ if (-not $haveCert -and -not $haveAzure) {
 }
 
 $script:SignTool = Find-SignTool
-$common = @('sign', '/v', '/fd', 'SHA256', '/td', 'SHA256', '/d', 'DreamLab PDF', '/du', 'https://github.com/mad10188/dreamlab-pdf')
+$common = @('sign', '/v', '/fd', 'SHA256', '/td', 'SHA256', '/d', 'DreamLab PDF', '/du', 'https://github.com/ADNY101/dreamlab-pdf')
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "dreamlab-pdf-sign-$PID"
 New-Item -ItemType Directory -Force -Path $tmp | Out-Null
 

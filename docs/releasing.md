@@ -158,7 +158,7 @@ xkbcommon) and the GPU (Vulkan, EGL) are loaded at runtime from the system; the 
 them as dependencies (see `nfpm.yaml`).
 
 Each AppImage embeds update information
-(`gh-releases-zsync|mad10188|dreamlab-pdf|latest|dreamlab-pdf-*-linux-<arch>.AppImage.zsync`), and its
+(`gh-releases-zsync|ADNY101|dreamlab-pdf|latest|dreamlab-pdf-*-linux-<arch>.AppImage.zsync`), and its
 `.zsync` is published beside it, so AppImageUpdate and AppImageLauncher can update it in place,
 downloading only the changed blocks. `latest` is the newest published, non-pre-release version.
 `package.sh` writes the `.zsync` when `zsyncmake` (the `zsync` package) is installed and warns
@@ -253,4 +253,4 @@ a match of the `CobaltStrikeBeacon` family rule.
    nothing about the software.
 7. **Report.** To the scanner, send the file's SHA-256, the release URL, the rule name and revision,
    and the matched identifiers and offsets. Report DreamLab PDF problems at
-   <https://github.com/mad10188/dreamlab-pdf/issues> with the same facts.
+   <https://github.com/ADNY101/dreamlab-pdf/issues> with the same facts.
