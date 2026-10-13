@@ -1,12 +1,13 @@
 name: macOS build
 
 # Builds DreamLab PDF for macOS on a GitHub-hosted Mac (Apple's tools only run on macOS) and publishes
-# the .dmg as a GitHub Release. Runs when a version tag (v0.7.1, ...) is pushed, or by hand from the
-# Actions tab. Unsigned (ad-hoc): no Apple Developer certificate is configured. To sign and notarize,
+# the .dmg as a GitHub Release (tagged v<version>). Runs when the `release` branch or a version tag
+# is pushed (`git push origin main:release`), or by hand from the Actions tab. Unsigned (ad-hoc): no Apple Developer certificate is configured. To sign and notarize,
 # add the APPLE_* secrets used by packaging/macos/package.sh and import the certificate first.
 
 on:
   push:
+    branches: [release]
     tags: ["v*"]
   workflow_dispatch:
 
