@@ -1,0 +1,83 @@
+name: macOS build
+
+# Builds DreamLab PDF for macOS on a GitHub-hosted Mac (Apple's tools only run on macOS) and publishes
+# the .dmg as a GitHub Release. Runs when a version tag (v0.7.1, ...) is pushed, or by hand from the
+# Actions tab. Unsigned (ad-hoc): no Apple Developer certificate is configured. To sign and notarize,
+# add the APPLE_* secrets used by packaging/macos/package.sh and import the certificate first.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: macos-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  macos:
+    runs-on: macos-15
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      # Optional build input: Japanese fonts (pinned like upstream's release workflow).
+      - uses: actions/checkout@v4
+        with:
+          repository: storytold/craft-fonts
+          ref: 3d9ab3a132ed0eff457e424226a435a901da30d3
+          path: craft-fonts
+
+      - name: Rust toolchain (Apple silicon + Intel)
+        run: |
+          rustup update stable
+          rustup default stable
+          rustup target add aarch64-apple-darwin x86_64-apple-darwin
+
+      - name: Build and package (universal .dmg)
+        env:
+          CRAFT_FONTS_DIR: ${{ github.workspace }}/craft-fonts
+        run: |
+          set -o pipefail
+          packaging/macos/package.sh --arch universal 2>&1 | tee build.log
+          ls -l dist/release
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="$(awk '/^\[/{p=($0=="[workspace.package]");next} p&&$1=="version"{gsub(/[" ]/,"",$3);print $3;exit}' Cargo.toml)"
+          TAG="v$VERSION"
+          cat > notes.md <<'NOTES'
+          DreamLab PDF for macOS 11 or later, universal (Apple silicon and Intel).
+
+          **First launch:** this build is not signed with an Apple Developer ID, so macOS blocks it the first time.
+          1. Open the .dmg and drag DreamLab PDF to Applications.
+          2. Open it once; when macOS says it can't be verified, click Done.
+          3. Go to System Settings > Privacy & Security, scroll down, and click **Open Anyway** next to DreamLab PDF.
+
+          Or in Terminal: `xattr -dr com.apple.quarantine "/Applications/DreamLab PDF.app"`
+          NOTES
+          sed -i '' 's/^          //' notes.md
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --title "DreamLab PDF $VERSION" --notes-file notes.md --prerelease
+          fi
+          gh release upload "$TAG" dist/release/*.dmg dist/release/*.zip --clobber
+
+      - name: Report a failed build as an issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "The macOS build for \`$GITHUB_REF_NAME\` failed: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo
+            echo '```'
+            tail -n 150 build.log 2>/dev/null || echo "(no build.log: an earlier step failed)"
+            echo '```'
+          } > failure.md
+          gh issue create --title "macOS build failed ($GITHUB_REF_NAME)" --body-file failure.md
